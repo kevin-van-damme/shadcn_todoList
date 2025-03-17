@@ -12,7 +12,7 @@ import {
 
 const TodoItem = () => {
   const { data, isLoading, error } = useGetTodosQuery();
-  const { categories } = useGetCategoriesQuery();
+  const { data: categories } = useGetCategoriesQuery();
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading todos!</div>;
   const todos = Array.isArray(data) ? data : [];
@@ -33,12 +33,10 @@ const TodoItem = () => {
                       <Checkbox id="todosText" />
                       <label htmlFor="todosText">{todo.text}</label>
                     </div>
-                    <div className="flex gap-10">
+                    <div className="bg- flex gap-1">
                       {categories &&
-                        categories.map((category) => (
-                          <div key={category.id}>
-                            <Badge variant="default">{todo.category}</Badge>
-                          </div>
+                        categories.map((cat) => (
+                          <Badge key={cat.id}>{cat.name}</Badge>
                         ))}
                       <Pencil />
                       <X />

@@ -1,6 +1,7 @@
 import { ModeToggle } from "./ui/mode-toggle";
 import AddTodo from "./AddTodo";
 import TodoList from "./TodoList";
+import FiltersTodo from "./FiltersTodo";
 import Pagination from "./Pagination";
 const Layout = () => {
   return (
@@ -11,8 +12,9 @@ const Layout = () => {
       </div>
       <section className="mt-10 space-y-4">
         <AddTodo />
+        <FiltersTodo />
         <TodoList />
-        {/* <Pagination /> */}
+        <Pagination />
         <p>STATS</p>
       </section>
     </div>
