@@ -5,6 +5,9 @@ const store = configureStore({
   reducer: {
     [todosApi.reducerPath]: todosApi.reducer,
   },
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware().concat(todosApi.middleware);
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

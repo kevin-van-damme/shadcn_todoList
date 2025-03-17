@@ -12,7 +12,10 @@ import { Plus } from "lucide-react";
 const AddTodo = () => {
   return (
     <form className="flex gap-2" action="#" method="POST">
-      <Input />
+      <Input
+        placeholder="Add a new todo..."
+        className="placeholder: placeholder:text-gray-500"
+      />
       <Select>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Work" />

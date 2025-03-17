@@ -1,6 +1,7 @@
 import { ModeToggle } from "./ui/mode-toggle";
 import AddTodo from "./AddTodo";
 import TodoList from "./TodoList";
+import Pagination from "./Pagination";
 const Layout = () => {
   return (
     <div className="mx-auto max-w-4xl text-2xl">
@@ -11,7 +12,7 @@ const Layout = () => {
       <section className="mt-10 space-y-4">
         <AddTodo />
         <TodoList />
-        <p>PAGINATION</p>
+        {/* <Pagination /> */}
         <p>STATS</p>
       </section>
     </div>
