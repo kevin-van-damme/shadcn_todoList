@@ -17,6 +17,7 @@ const TodoItem = () => {
   const todos = Array.isArray(data) ? data : [];
   const cats = Array.isArray(categories) ? categories : [];
   console.log(todos);
+  console.log(cats);
   return (
     <li>
       {todos &&
@@ -37,6 +38,8 @@ const TodoItem = () => {
                       {cats &&
                         cats.map((cat) => (
                           <Badge key={cat.id}>{cat.name}</Badge>
+                          // als de todo.category == category.name laat dan in de badge de naam en als bg-${category.color} zien??
+                          // ik moet zien dat voor elke todo dat ingelezen wordt de category hiervan wordt vergeleken met de category naam/id van de array categories
                         ))}
                       <Pencil />
                       <X />
