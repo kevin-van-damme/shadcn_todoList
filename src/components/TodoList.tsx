@@ -1,8 +1,10 @@
+import TodoItem from "./TodoItem";
+
 const TodoList = () => {
   return (
     <div>
       <ul>
-        <li>Todo</li>
+        <TodoItem />
       </ul>
     </div>
   );

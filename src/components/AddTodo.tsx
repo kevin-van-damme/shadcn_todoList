@@ -11,7 +11,7 @@ import { Plus } from "lucide-react";
 
 const AddTodo = () => {
   return (
-    <div className="flex gap-2">
+    <form className="flex gap-2" action="#" method="POST">
       <Input />
       <Select>
         <SelectTrigger className="w-[180px]">
@@ -29,7 +29,7 @@ const AddTodo = () => {
           Add
         </Button>
       </Select>
-    </div>
+    </form>
   );
 };
 export default AddTodo;
