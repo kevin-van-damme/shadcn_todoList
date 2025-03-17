@@ -1,6 +1,5 @@
 import { useGetTodosQuery, useGetCategoriesQuery } from "../store/todosApi";
 import { Badge } from "@/components/ui/badge";
-import { Checkbox } from "@radix-ui/react-checkbox";
 import { Pencil } from "lucide-react";
 import { X } from "lucide-react";
 import {
@@ -16,6 +15,7 @@ const TodoItem = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading todos!</div>;
   const todos = Array.isArray(data) ? data : [];
+  const cats = Array.isArray(categories) ? categories : [];
   console.log(todos);
   return (
     <li>
@@ -29,13 +29,13 @@ const TodoItem = () => {
               >
                 <AccordionTrigger>
                   <div className="flex w-full items-center justify-between">
-                    <div className="flex items-center gap-10">
-                      <Checkbox id="todosText" />
-                      <label htmlFor="todosText">{todo.text}</label>
+                    <div className="flex items-center gap-2">
+                      <input type="checkbox" />
+                      <label>{todo.text}</label>
                     </div>
                     <div className="bg- flex gap-1">
-                      {categories &&
-                        categories.map((cat) => (
+                      {cats &&
+                        cats.map((cat) => (
                           <Badge key={cat.id}>{cat.name}</Badge>
                         ))}
                       <Pencil />

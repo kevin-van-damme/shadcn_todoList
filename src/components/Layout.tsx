@@ -3,6 +3,7 @@ import AddTodo from "./AddTodo";
 import TodoList from "./TodoList";
 import FiltersTodo from "./FiltersTodo";
 import Pagination from "./Pagination";
+import Stats from "./Stats";
 const Layout = () => {
   return (
     <div className="mx-auto max-w-4xl text-2xl">
@@ -15,7 +16,8 @@ const Layout = () => {
         <FiltersTodo />
         <TodoList />
         <Pagination />
-        <p>STATS</p>
+        <hr />
+        <Stats />
       </section>
     </div>
   );
