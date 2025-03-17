@@ -34,13 +34,18 @@ const TodoItem = () => {
                       <input type="checkbox" />
                       <label>{todo.text}</label>
                     </div>
-                    <div className="bg- flex gap-1">
-                      {cats &&
-                        cats.map((cat) => (
-                          <Badge key={cat.id}>{cat.name}</Badge>
+                    <div className="bg- flex gap-5">
+                      <Badge>{todo.category}</Badge>
+                      {/* {cats &&
+                        cats.map((cat) =>
+                          todo.category === cat.name ? (
+                            <Badge key={cat.id}>{cat.name}</Badge>
+                          ) : (
+                            <Badge>{todo.category}</Badge>
+                          ),
                           // als de todo.category == category.name laat dan in de badge de naam en als bg-${category.color} zien??
                           // ik moet zien dat voor elke todo dat ingelezen wordt de category hiervan wordt vergeleken met de category naam/id van de array categories
-                        ))}
+                        )} */}
                       <Pencil />
                       <X />
                     </div>
