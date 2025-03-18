@@ -4,11 +4,11 @@ import {
   Select,
   SelectTrigger,
   SelectValue,
-} from "@radix-ui/react-select";
+} from "@/components/ui/select";
 
 const ShowPerPage = () => {
   return (
-    <div className="flex items-center text-lg">
+    <div className="flex items-center gap-2 text-lg">
       <p>Show: </p>
       <div className="cursor-pointer">
         <Select>
