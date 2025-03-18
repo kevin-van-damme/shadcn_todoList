@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Textarea } from "@/components/ui/textarea";
 
 const TodoItem = () => {
   const { data, isLoading, error } = useGetTodosQuery();
@@ -26,32 +27,27 @@ const TodoItem = () => {
             <Accordion type="single" collapsible>
               <AccordionItem
                 value="item-1"
-                className="space-y-3 rounded-md bg-slate-100 px-2 outline-1 outline-slate-300"
+                className="space-y-3 rounded-md px-3 outline-1 outline-slate-300"
               >
                 <AccordionTrigger>
                   <div className="flex w-full items-center justify-between">
                     <div className="flex items-center gap-2">
                       <input type="checkbox" />
-                      <label>{todo.text}</label>
+                      <label className="cursor-pointer">{todo.text}</label>
                     </div>
                     <div className="bg- flex gap-5">
-                      <Badge>{todo.category}</Badge>
-                      {/* {cats &&
-                        cats.map((cat) =>
-                          todo.category === cat.name ? (
-                            <Badge key={cat.id}>{cat.name}</Badge>
-                          ) : (
-                            <Badge>{todo.category}</Badge>
-                          ),
-                          // als de todo.category == category.name laat dan in de badge de naam en als bg-${category.color} zien??
-                          // ik moet zien dat voor elke todo dat ingelezen wordt de category hiervan wordt vergeleken met de category naam/id van de array categories
-                        )} */}
-                      <Pencil />
-                      <X />
+                      <Badge className="cursor-pointer">{todo.category}</Badge>
+                      <Pencil className="cursor-pointer" />
+                      <X className="cursor-pointer" />
                     </div>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent>{todo.description}</AccordionContent>
+                <AccordionContent className="flex flex-col gap-3">
+                  <span>Description</span>
+                  <div>
+                    <Textarea value={todo.description} />
+                  </div>
+                </AccordionContent>
               </AccordionItem>
             </Accordion>
           </div>

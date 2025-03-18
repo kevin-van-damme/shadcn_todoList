@@ -6,7 +6,7 @@ const Stats = () => {
   const todos = Array.isArray(data) ? data : [];
   return (
     <div className="text-slate-500">
-      <div className="flex w-full justify-between pb-4 text-xl">
+      <div className="flex w-full justify-between pb-4 text-lg">
         <div>Total: {todos.length}</div>
         <div>Active: 5</div>
         <div>Completed: 8</div>

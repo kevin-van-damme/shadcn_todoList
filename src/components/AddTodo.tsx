@@ -17,7 +17,7 @@ const AddTodo = () => {
         className="placeholder: placeholder:text-gray-500"
       />
       <Select>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[180px cursor-pointer">
           <SelectValue placeholder="Work" />
         </SelectTrigger>
         <SelectContent>

@@ -13,16 +13,18 @@ const PaginationButtons = () => {
       <Pagination>
         <PaginationContent>
           <PaginationItem>
-            <PaginationPrevious href="#" />
+            <PaginationPrevious href="#" className="border-1" />
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink href="#">1</PaginationLink>
+            <PaginationLink href="#" className="border-1">
+              1
+            </PaginationLink>
           </PaginationItem>
           <PaginationItem>
-            <PaginationEllipsis />
+            <PaginationEllipsis className="rounded-md border-1" />
           </PaginationItem>
           <PaginationItem>
-            <PaginationNext href="#" />
+            <PaginationNext href="#" className="border-1" />
           </PaginationItem>
         </PaginationContent>
       </Pagination>

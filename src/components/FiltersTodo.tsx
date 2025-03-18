@@ -11,7 +11,7 @@ const FiltersTodo = () => {
     <div className="flex gap-2 text-lg">
       <div>
         <Select>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[180px] cursor-pointer">
             <SelectValue placeholder="Show All Categories" />
           </SelectTrigger>
           <SelectContent>
@@ -26,7 +26,7 @@ const FiltersTodo = () => {
       </div>
       <div>
         <Select>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[180px] cursor-pointer">
             <SelectValue placeholder="Show All Status" />
           </SelectTrigger>
           <SelectContent>

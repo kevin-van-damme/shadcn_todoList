@@ -9,7 +9,7 @@ import {
 const ShowPerPage = () => {
   return (
     <div className="flex items-center gap-2 text-lg">
-      <p>Show: </p>
+      <p className="text-md text-slate-600">Show: </p>
       <div className="cursor-pointer">
         <Select>
           <SelectTrigger className="w-[180px]">
