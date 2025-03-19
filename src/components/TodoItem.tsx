@@ -2,16 +2,14 @@ import { useState } from "react";
 import { useGetTodosQuery, useGetCategoriesQuery } from "../store/todosApi";
 import { Badge } from "@/components/ui/badge";
 import { Pencil, X } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Textarea } from "@/components/ui/textarea";
 
 const TodoItem = () => {
-  const { data, isLoading, error } = useGetTodosQuery();
+  const { data, isLoading, error } = useGetTodosQuery({
+    page: 1,
+    perPage: 5,
+  });
   const { data: categories } = useGetCategoriesQuery();
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading todos!</div>;
@@ -25,10 +23,7 @@ const TodoItem = () => {
           todos.map((todo) => (
             <li key={todo.id}>
               <Accordion type="single" collapsible>
-                <AccordionItem
-                  value={`item-${todo.id}`}
-                  className="space-y-3 rounded-md px-3 outline-1 outline-slate-300"
-                >
+                <AccordionItem value={`item-${todo.id}`} className="space-y-3 rounded-md px-3 outline-1 outline-slate-300">
                   <AccordionTrigger>
                     <div className="flex w-full items-center justify-between">
                       <div className="flex items-center gap-2">
@@ -40,9 +35,7 @@ const TodoItem = () => {
                           <Badge
                             className="cursor-pointer"
                             style={{
-                              backgroundColor: cats.find(
-                                (category) => category.name === todo.category,
-                              )?.color,
+                              backgroundColor: cats.find((category) => category.name === todo.category)?.color,
                             }}
                           >
                             {todo.category}

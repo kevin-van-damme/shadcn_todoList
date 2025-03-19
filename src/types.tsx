@@ -16,8 +16,10 @@ export interface TodoElement {
   category: string;
   description: string;
 }
-
-export interface ShowPerPageProps {
-  limit: number;
-  setLimit: React.Dispatch<React.SetStateAction<number>>;
+export interface Pagination<T> {
+  currentPage: number;
+  itemsPerPage: number;
+  totalItems: number;
+  totalPages: number;
+  data: T[];
 }
