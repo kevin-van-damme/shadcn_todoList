@@ -9,74 +9,59 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Textarea } from "@/components/ui/textarea";
-import PaginationButtons from "./PaginationButtons";
 
 const TodoItem = () => {
-  const [page, setPage] = useState(1);
-  const limit = 5;
-
-  const { data, isLoading, error } = useGetTodosQuery({ page, limit });
+  const { data, isLoading, error } = useGetTodosQuery();
   const { data: categories } = useGetCategoriesQuery();
-
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading todos!</div>;
-
   const todos = Array.isArray(data) ? data : [];
   const cats = Array.isArray(categories) ? categories : [];
 
   return (
     <div>
       <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            <Accordion type="single" collapsible>
-              <AccordionItem
-                value={`item-${todo.id}`}
-                className="space-y-3 rounded-md px-3 outline-1 outline-slate-300"
-              >
-                <AccordionTrigger>
-                  <div className="flex w-full items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <input type="checkbox" />
-                      <label className="cursor-pointer">{todo.text}</label>
-                    </div>
-                    <div className="flex gap-5">
-                      <Badge className="cursor-pointer">{todo.category}</Badge>
-                      <Pencil className="cursor-pointer text-slate-500 hover:text-slate-200" />
-                      <X className="cursor-pointer text-slate-500 hover:text-red-400" />
-                      <div className="bg- flex gap-5">
-                        <Badge
-                          className="cursor-pointer"
-                          style={{
-                            backgroundColor: cats.find(
-                              (category) => category.name === todo.category,
-                            )?.color,
-                          }}
-                        >
-                          {todo.category}
-                        </Badge>
-                        <Pencil className="cursor-pointer" />
-                        <X className="cursor-pointer" />
+        {todos &&
+          todos.map((todo) => (
+            <li key={todo.id}>
+              <Accordion type="single" collapsible>
+                <AccordionItem
+                  value={`item-${todo.id}`}
+                  className="space-y-3 rounded-md px-3 outline-1 outline-slate-300"
+                >
+                  <AccordionTrigger>
+                    <div className="flex w-full items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <input type="checkbox" />
+                        <label className="cursor-pointer">{todo.text}</label>
+                      </div>
+                      <div className="flex gap-5">
+                        <div className="bg- flex gap-5">
+                          <Badge
+                            className="cursor-pointer"
+                            style={{
+                              backgroundColor: cats.find(
+                                (category) => category.name === todo.category,
+                              )?.color,
+                            }}
+                          >
+                            {todo.category}
+                          </Badge>
+                          <Pencil className="cursor-pointer text-slate-500 hover:text-slate-200" />
+                          <X className="cursor-pointer text-slate-500 hover:text-red-400" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="flex flex-col gap-3">
-                  <span>Description</span>
-                  <Textarea value={todo.description} readOnly />
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </li>
-        ))}
+                  </AccordionTrigger>
+                  <AccordionContent className="flex flex-col gap-3">
+                    <span>Description</span>
+                    <Textarea value={todo.description} />
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </li>
+          ))}
       </ul>
-
-      {/* Pagination */}
-      <PaginationButtons
-        page={page}
-        setPage={setPage}
-        hasMore={todos.length === limit}
-      />
     </div>
   );
 };

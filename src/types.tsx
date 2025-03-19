@@ -14,6 +14,7 @@ export interface TodoElement {
   text: string;
   completed: boolean;
   category: string;
+  description: string;
 }
 
 export interface ShowPerPageProps {

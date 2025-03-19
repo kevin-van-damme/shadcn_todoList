@@ -1,8 +1,7 @@
 import { useGetTodosQuery } from "../store/todosApi";
 
 const Stats = () => {
-  // Fetch all todos (or use a large limit)
-  const { data, isLoading, error } = useGetTodosQuery({ page: 1, limit: 10 });
+  const { data, isLoading, error } = useGetTodosQuery();
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading todos!</div>;
   const todos = Array.isArray(data) ? data : [];
