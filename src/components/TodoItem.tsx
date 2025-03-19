@@ -6,10 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Textarea } from "@/components/ui/textarea";
 
 const TodoItem = () => {
-  const { data, isLoading, error } = useGetTodosQuery({
-    page: 1,
-    perPage: 5,
-  });
+  const { data, isLoading, error } = useGetTodosQuery();
   const { data: categories } = useGetCategoriesQuery();
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading todos!</div>;

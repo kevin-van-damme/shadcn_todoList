@@ -1,10 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import {
-  type TodoElement,
-  type Category,
-  type Todo,
-  type Pagination,
-} from "@/types";
+import { type TodoElement, type Category, type Todo } from "@/types";
 
 const todosApi = createApi({
   reducerPath: "todosApi",
@@ -12,11 +7,8 @@ const todosApi = createApi({
     baseUrl: "http://localhost:3000",
   }),
   endpoints: (builder) => ({
-    getTodos: builder.query<
-      Pagination<TodoElement>,
-      { page: number; perPage: number }
-    >({
-      query: ({ page, perPage }) => `/todos?page=${page}&per_page=${perPage}`,
+    getTodos: builder.query<TodoElement, void>({
+      query: () => "/todos",
     }),
     getCategories: builder.query<Category, void>({
       query: () => "/categories",
@@ -36,5 +28,4 @@ const todosApi = createApi({
 });
 
 export default todosApi;
-export const { useGetTodosQuery, useGetCategoriesQuery, useAddTodoQuery } =
-  todosApi;
+export const { useGetTodosQuery, useGetCategoriesQuery, useAddTodoQuery } = todosApi;

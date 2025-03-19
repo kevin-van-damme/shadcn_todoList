@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit/react";
 import todosApi from "./todosApi";
 
 const store = configureStore({

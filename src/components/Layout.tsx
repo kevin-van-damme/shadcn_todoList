@@ -8,7 +8,7 @@ const Layout = () => {
   return (
     <div className="mx-auto max-w-4xl text-2xl">
       <div className="mt-30 flex justify-between">
-        <h2 className="font-bold">Todo App</h2>
+        <h2 className="text-4xl font-bold">Todo App</h2>
         <ModeToggle />
       </div>
       <section className="mt-10 space-y-4">
