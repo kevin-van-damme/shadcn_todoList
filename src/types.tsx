@@ -15,3 +15,8 @@ export interface TodoElement {
   completed: boolean;
   category: string;
 }
+
+export interface ShowPerPageProps {
+  limit: number;
+  setLimit: React.Dispatch<React.SetStateAction<number>>;
+}

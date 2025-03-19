@@ -7,9 +7,10 @@ const todosApi = createApi({
     baseUrl: "http://localhost:3000",
   }),
   endpoints: (builder) => ({
-    getTodos: builder.query<TodoElement, void>({
-      query: () => "/todos",
+    getTodos: builder.query<TodoElement, { page: number; limit: number }>({
+      query: ({ page, limit }) => `/todos?_page=${page}&_limit=${limit}`,
     }),
+
     getCategories: builder.query<Category, void>({
       query: () => "/categories",
     }),
