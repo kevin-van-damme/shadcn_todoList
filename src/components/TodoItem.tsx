@@ -36,7 +36,16 @@ const TodoItem = () => {
                       <label className="cursor-pointer">{todo.text}</label>
                     </div>
                     <div className="bg- flex gap-5">
-                      <Badge className="cursor-pointer">{todo.category}</Badge>
+                      <Badge
+                        className="cursor-pointer"
+                        style={{
+                          backgroundColor: cats.find(
+                            (category) => category.name === todo.category,
+                          )?.color,
+                        }}
+                      >
+                        {todo.category}
+                      </Badge>
                       <Pencil className="cursor-pointer" />
                       <X className="cursor-pointer" />
                     </div>
