@@ -22,6 +22,15 @@ const todosApi = createApi({
         method: "POST",
         body: todo,
       }),
+      invalidatesTags: ["Todo"],
+    }),
+    editTodo: builder.mutation<Todo, TodoElement>({
+      query: (todo) => ({
+        url: `/todos/${todo}`,
+        method: "PUT",
+        body: todo,
+      }),
+      invalidatesTags: ["Todo"],
     }),
     removeTodo: builder.mutation<Todo, string>({
       query: (id) => ({
@@ -34,4 +43,4 @@ const todosApi = createApi({
 });
 
 export default todosApi;
-export const { useGetTodosQuery, useGetCategoriesQuery, useAddTodoMutation, useRemoveTodoMutation } = todosApi;
+export const { useGetTodosQuery, useGetCategoriesQuery, useAddTodoMutation, useRemoveTodoMutation, useEditTodoMutation } = todosApi;

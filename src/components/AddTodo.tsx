@@ -3,24 +3,30 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { useAddTodoMutation } from "@/store/todosApi";
+import { useSonner } from "sonner";
 
 const AddTodo = () => {
   const [addTodo, { isLoading, error }] = useAddTodoMutation();
+  const sonner = useSonner();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const text = formData.get("text") as string;
     const category = formData.get("category") as string;
-    console.log(formData);
-    console.log(text);
-    console.log(category);
     addTodo({
       text,
       category,
       completed: false,
       description: "",
-    });
+    })
+      .unwrap()
+      .then(() => {
+        sonner.success(`Todo added: ${text}`);
+      })
+      .catch(() => {
+        sonner.error("Error adding todo!");
+      });
   };
 
   return (
