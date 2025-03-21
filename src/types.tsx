@@ -10,7 +10,6 @@ export interface Category {
 }
 
 export interface TodoElement {
-  id: string;
   text: string;
   completed: boolean;
   category: string;
