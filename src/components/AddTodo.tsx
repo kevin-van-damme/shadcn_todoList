@@ -3,34 +3,31 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { useAddTodoMutation } from "@/store/todosApi";
-import { useSonner } from "sonner";
+import { Toaster } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 const AddTodo = () => {
-  const [addTodo, { isLoading, error }] = useAddTodoMutation();
-  const sonner = useSonner();
-
+  const [addTodo, { data, isLoading, error }] = useAddTodoMutation();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const text = formData.get("text") as string;
     const category = formData.get("category") as string;
-    addTodo({
-      text,
-      category,
-      completed: false,
-      description: "",
-    })
-      .unwrap()
-      .then(() => {
-        sonner.success(`Todo added: ${text}`);
-      })
-      .catch(() => {
-        sonner.error("Error adding todo!");
-      });
+    if (!text) {
+      toast.error("Please fill in the text and choose a category!");
+    } else {
+      addTodo({
+        text,
+        category,
+        completed: false,
+        description: "",
+      }).unwrap();
+      toast.success(`Todo added: ${text}`);
+    }
   };
-
   return (
     <form className="flex gap-2" onSubmit={handleSubmit}>
+      <Toaster />
       <Input name="text" placeholder="Add a new todo..." className="placeholder:text-gray-500" />
       <Select name="category">
         <SelectTrigger className="w-[180px] cursor-pointer">

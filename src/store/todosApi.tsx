@@ -8,15 +8,15 @@ const todosApi = createApi({
     baseUrl: "https://scratch-magnetic-mango.glitch.me",
   }),
   endpoints: (builder) => ({
-    getTodos: builder.query<TodoElement, void>({
+    getTodos: builder.query<TodoElement[], void>({
       query: () => "/todos",
       providesTags: ["Todo"],
     }),
-    getCategories: builder.query<Category, void>({
+    getCategories: builder.query<Category[], void>({
       query: () => "/categories",
       providesTags: ["Todo"],
     }),
-    addTodo: builder.mutation<Todo, TodoElement>({
+    addTodo: builder.mutation<Todo, Omit<TodoElement, "id">>({
       query: (todo) => ({
         url: "/todos",
         method: "POST",
@@ -24,11 +24,11 @@ const todosApi = createApi({
       }),
       invalidatesTags: ["Todo"],
     }),
-    editTodo: builder.mutation<Todo, TodoElement>({
-      query: (todo) => ({
-        url: `/todos/${todo}`,
-        method: "PUT",
-        body: todo,
+    updateTodo: builder.mutation<Todo, { id: string; todo: Partial<Omit<TodoElement, "id">> }>({
+      query: (obj) => ({
+        url: `/todos/${obj.id}`,
+        method: "PATCH",
+        body: obj.todo,
       }),
       invalidatesTags: ["Todo"],
     }),
@@ -43,4 +43,4 @@ const todosApi = createApi({
 });
 
 export default todosApi;
-export const { useGetTodosQuery, useGetCategoriesQuery, useAddTodoMutation, useRemoveTodoMutation, useEditTodoMutation } = todosApi;
+export const { useGetTodosQuery, useGetCategoriesQuery, useAddTodoMutation, useRemoveTodoMutation, useUpdateTodoMutation } = todosApi;
