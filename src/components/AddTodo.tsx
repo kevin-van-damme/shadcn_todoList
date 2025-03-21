@@ -37,11 +37,11 @@ const AddTodo = () => {
           <SelectValue placeholder="Work" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="work">Work</SelectItem>
-          <SelectItem value="personal">Personal</SelectItem>
-          <SelectItem value="shopping">Shopping</SelectItem>
-          <SelectItem value="health">Health</SelectItem>
-          <SelectItem value="learning">Learning</SelectItem>
+          <SelectItem value="Work">Work</SelectItem>
+          <SelectItem value="Personal">Personal</SelectItem>
+          <SelectItem value="Shopping">Shopping</SelectItem>
+          <SelectItem value="Health">Health</SelectItem>
+          <SelectItem value="Learning">Learning</SelectItem>
         </SelectContent>
       </Select>
       <Button className="cursor-pointer" variant="secondary" type="submit">
