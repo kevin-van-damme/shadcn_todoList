@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { type TodoElement, type Category, type Todo } from "@/types";
+import { type ListResponse } from "@/types";
 
 const todosApi = createApi({
   tagTypes: ["Todo"],
@@ -8,8 +9,8 @@ const todosApi = createApi({
     baseUrl: "https://scratch-magnetic-mango.glitch.me",
   }),
   endpoints: (builder) => ({
-    getTodos: builder.query<TodoElement[], void>({
-      query: () => "/todos",
+    getTodos: builder.query<ListResponse<TodoElement[]>, number | void>({
+      query: (page = 1) => `/todos?page=${page}`,
       providesTags: ["Todo"],
     }),
     getCategories: builder.query<Category[], void>({

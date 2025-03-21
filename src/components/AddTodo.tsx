@@ -20,7 +20,7 @@ const AddTodo = () => {
         text,
         category,
         completed: false,
-        description: "",
+        description: "This is a default todo, please edit the description asap!",
       }).unwrap();
       toast.success(`Todo added: ${text}`);
     }
