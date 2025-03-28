@@ -1,25 +1,35 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useDispatch, useSelector } from "react-redux";
+import { useGetCategoriesQuery } from "@/store/todosApi";
+import { setCategory, setStatus } from "@/store/filterSlice";
+import { RootState } from "@/store/index";
 
 const FiltersTodo = () => {
+  const dispatch = useDispatch();
+  const { data: categories, isLoading } = useGetCategoriesQuery();
+  const selectedCategory = useSelector((state: RootState) => state.filter.category);
+  const selectedStatus = useSelector((state: RootState) => state.filter.status);
+
   return (
     <div className="flex gap-2 text-lg">
       <div>
-        <Select>
+        <Select value={selectedCategory} onValueChange={(value) => dispatch(setCategory(value))}>
           <SelectTrigger className="w-[180px] cursor-pointer">
             <SelectValue placeholder="Show All Categories" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">Show All Categories</SelectItem>
-            <SelectItem value="work">Work</SelectItem>
-            <SelectItem value="personal">Personal</SelectItem>
-            <SelectItem value="shopping">Shopping</SelectItem>
-            <SelectItem value="health">Health</SelectItem>
-            <SelectItem value="learning">Learning</SelectItem>
+            {!isLoading &&
+              categories?.map((category) => (
+                <SelectItem key={category.id} value={category.name}>
+                  {category.name}
+                </SelectItem>
+              ))}
           </SelectContent>
         </Select>
       </div>
       <div>
-        <Select>
+        <Select value={selectedStatus} onValueChange={(value) => dispatch(setStatus(value))}>
           <SelectTrigger className="w-[180px] cursor-pointer">
             <SelectValue placeholder="Show All Status" />
           </SelectTrigger>
@@ -33,4 +43,5 @@ const FiltersTodo = () => {
     </div>
   );
 };
+
 export default FiltersTodo;

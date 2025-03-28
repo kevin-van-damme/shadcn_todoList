@@ -7,7 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 
 const AddTodo = () => {
-  const [addTodo, { data, isLoading, error }] = useAddTodoMutation();
+  const [addTodo, { isLoading, error }] = useAddTodoMutation();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
