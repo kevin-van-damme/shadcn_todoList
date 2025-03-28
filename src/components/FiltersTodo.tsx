@@ -9,6 +9,7 @@ const FiltersTodo = () => {
   const { data: categories, isLoading } = useGetCategoriesQuery();
   const selectedCategory = useSelector((state: RootState) => state.filter.category);
   const selectedStatus = useSelector((state: RootState) => state.filter.status);
+  console.log(selectedCategory, "Selected Category");
 
   return (
     <div className="flex gap-2 text-lg">

@@ -6,17 +6,23 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Textarea } from "@/components/ui/textarea";
 import { useRemoveTodoMutation } from "../store/todosApi";
 import { useUpdateTodoMutation } from "../store/todosApi";
+import { RootState } from "@/store/index";
+import { useSelector } from "react-redux";
 import Dailog from "@/components/Dailog";
 
 const TodoItem = () => {
   const { data, isLoading, error } = useGetTodosQuery();
   const { data: categories } = useGetCategoriesQuery();
+  const selectedCategory = useSelector((state: RootState) => state.filter.category);
+
   const [removeTodo] = useRemoveTodoMutation();
   const [editTodo] = useUpdateTodoMutation();
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading todos!</div>;
   const todos = Array.isArray(data) ? data : [];
   const cats = Array.isArray(categories) ? categories : [];
+  const filteredTodos = todos?.filter((todo) => (selectedCategory === "all" ? true : todo.category === selectedCategory));
+  console.log(filteredTodos);
 
   return (
     <div>
